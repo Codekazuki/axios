@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 const url = "https://icanhazdadjoke.com/";
+// const url = "https://cat-fact.herokuapp.com/facts/random";
+
 // Accept : 'application/json'
 
 const Headers = () => {
@@ -14,6 +16,7 @@ const Headers = () => {
           Accept: "application/json",
         },
       });
+      console.log(data.joke);
       setJoke(data.joke);
     } catch (error) {
       console.log(error.response);
