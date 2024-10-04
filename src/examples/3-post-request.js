@@ -1,14 +1,19 @@
-import { useState } from 'react';
-import axios from 'axios';
-const url = 'https://www.course-api.com/axios-tutorial-post';
+import { useState } from "react";
+import axios from "axios";
+const url = "https://www.course-api.com/axios-tutorial-post";
 
 const PostRequest = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(name, email);
+    try {
+      const resp = await axios.post(url, { name: name, email: email });
+      console.log(resp.data);
+    } catch (error) {
+      console.log(error.response);
+    }
   };
 
   return (
@@ -20,6 +25,7 @@ const PostRequest = () => {
             name
           </label>
           <input
+            placeholder='input your name'
             type='text'
             className='form-input'
             id='name'
@@ -32,6 +38,7 @@ const PostRequest = () => {
             email
           </label>
           <input
+            placeholder='input your email'
             type='email'
             className='form-input'
             id='email'
